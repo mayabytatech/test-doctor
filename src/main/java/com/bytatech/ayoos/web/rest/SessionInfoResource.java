@@ -226,46 +226,40 @@ public class SessionInfoResource {
 	public List<Slot> createSlots(@PathVariable LocalDate date) {
 
 		List<SessionInfoDTO> sessionList = sessionInfoService.findByDate(date);
-
+   
 		List<Slot> slots = new ArrayList<Slot>();
 
 		double startTime = 0;
 		double endTime = 0;
 
 		for (SessionInfoDTO sessionDTO : sessionList) {
-
-			for (int i = 0; endTime == sessionDTO.getToTime(); i++) {
-
+System.out.println("sessionDTO>>>>>>>>>>>>>>>>>        "+sessionDTO+">>>>>>>>>>>"+(startTime == sessionDTO.getToTime()));
+			for (int i = 0; startTime <= sessionDTO.getToTime(); i++) {
+System.out.println(endTime+">>>>>>>>>>>>>>>>>>>"+sessionDTO.getToTime()+"<<<<<<<<<<<<"+(endTime != sessionDTO.getToTime()));
 				double interval = sessionDTO.getInterval();
 
 				Slot s = new Slot();
 
 				if (i == 0) {
 					s.setStarTime(sessionDTO.getFromTime());
+					System.out.println("))))))))))))"+s);
 				} else {
-					s.setStarTime(sessionDTO.getToTime());
+					s.setStarTime(s.getToTime());
 				}
-				s.setToTime(sessionDTO.getFromTime() + interval);
-
+				s.setToTime(s.getStarTime()+ interval);
+				s.setDate(sessionDTO.getDate());
+				s.setId(i+1);
+				System.out.println("))))))))))))"+s);
+				
 				slots.add(s);
-
-				endTime = sessionDTO.getToTime();
+				System.out.println("slot      ********************          "+s);
+				startTime=s.getStarTime();
+				endTime = s.getToTime();
 			}
 
 		}
-
+System.out.println("slots>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+slots);
 		return slots;
 
 	}
-
-	@PostMapping("/session-infos/toDto")
-	public ResponseEntity<List<SessionInfoDTO>> listToDto(@RequestBody List<SessionInfo> sessionInfo) {
-		log.debug("REST request to convert to DTO");
-		List<SessionInfoDTO> dtos = new ArrayList<>();
-		sessionInfo.forEach(a -> {
-			dtos.add(sessionInfoMapper.toDto(a));
-		});
-		return ResponseEntity.ok().body(dtos);
-	}
-
 }
