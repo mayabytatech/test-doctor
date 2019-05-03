@@ -242,9 +242,11 @@ System.out.println(endTime+">>>>>>>>>>>>>>>>>>>"+sessionDTO.getToTime()+"<<<<<<<
 
 				if (i == 0) {
 					s.setStarTime(sessionDTO.getFromTime());
-					System.out.println("))))))))))))"+s);
+					System.out.println("if))))))))))))"+s);
 				} else {
+					
 					s.setStarTime(s.getToTime());
+					System.out.println("else))))))))))))"+s);
 				}
 			double addTime=	s.getStarTime()+sessionDTO.getInterval();
 			System.out.println("&&&&&&&&&&&&&"+addTime);
