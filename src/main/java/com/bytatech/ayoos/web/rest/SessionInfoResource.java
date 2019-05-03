@@ -233,13 +233,13 @@ public class SessionInfoResource {
 		double endTime = 0;
 
 		for (SessionInfoDTO sessionDTO : sessionList) {
-System.out.println("sessionDTO>>>>>>>>>>>>>>>>>        "+sessionDTO+">>>>>>>>>>>"+(startTime == sessionDTO.getToTime()));
+//System.out.println("sessionDTO>>>>>>>>>>>>>>>>>        "+sessionDTO+">>>>>>>>>>>"+(startTime == sessionDTO.getToTime()));
 			for (int i = 0; startTime <= sessionDTO.getToTime(); i++) {
-System.out.println(endTime+">>>>>>>>>>>>>>>>>>>"+sessionDTO.getToTime()+"<<<<<<<<<<<<"+(endTime != sessionDTO.getToTime()));
+//System.out.println(endTime+">>>>>>>>>>>>>>>>>>>"+sessionDTO.getToTime()+"<<<<<<<<<<<<"+(endTime != sessionDTO.getToTime()));
 				//double interval = sessionDTO.getInterval();
 
 				Slot s = new Slot();
-
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!"+(i == 0)+"        "+sessionDTO.getFromTime());
 				if (i == 0) {
 					s.setStarTime(sessionDTO.getFromTime());
 					System.out.println("if))))))))))))"+s);
