@@ -246,7 +246,8 @@ System.out.println(endTime+">>>>>>>>>>>>>>>>>>>"+sessionDTO.getToTime()+"<<<<<<<
 				} else {
 					s.setStarTime(s.getToTime());
 				}
-				s.setToTime(s.getStarTime()+ interval);
+				s.setToTime(s.getStarTime()+ sessionDTO.getInterval());
+				System.out.println("&&&&&&&&&&&&&"+s.getToTime());
 				s.setDate(sessionDTO.getDate());
 				s.setId(i+1);
 				System.out.println("))))))))))))"+s);
