@@ -53,4 +53,11 @@ public interface StatusService {
      * @return the list of entities
      */
     Page<StatusDTO> search(String query, Pageable pageable);
+
+	
+	/**
+	 * @param reservedSlotId
+	 * @return
+	 */
+	StatusDTO findByReservedSlotId(Long reservedSlotId);
 }

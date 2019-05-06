@@ -1,6 +1,5 @@
 package com.bytatech.ayoos.domain;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -21,141 +20,171 @@ import java.util.Objects;
 @Document(indexName = "reservedslot")
 public class ReservedSlot implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = "jhi_date")
-    private LocalDate date;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "start_time")
-    private Double startTime;
+	@Column(name = "jhi_date")
+	private LocalDate date;
 
-    @Column(name = "end_time")
-    private Double endTime;
+	@Column(name = "start_time")
+	private Double startTime;
 
-    @ManyToOne
-    @JsonIgnoreProperties("reservedSlots")
-    private Doctor doctor;
+	@Column(name = "end_time")
+	private Double endTime;
 
-    @OneToMany(mappedBy = "reservedSlot")
-    private Set<Status> statuses = new HashSet<>();
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
+	@ManyToOne
+	@JsonIgnoreProperties("reservedSlots")
+	private Doctor doctor;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@OneToMany(mappedBy = "reservedSlot")
+	private Set<Status> statuses = new HashSet<>();
 
-    public LocalDate getDate() {
-        return date;
-    }
+	// jhipster-needle-entity-add-field - JHipster will add fields here, do not
+	// remove
+	public Long getId() {
+		return id;
+	}
 
-    public ReservedSlot date(LocalDate date) {
-        this.date = date;
-        return this;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
+	public LocalDate getDate() {
+		return date;
+	}
 
-    public Double getStartTime() {
-        return startTime;
-    }
+	public ReservedSlot date(LocalDate date) {
+		this.date = date;
+		return this;
+	}
 
-    public ReservedSlot startTime(Double startTime) {
-        this.startTime = startTime;
-        return this;
-    }
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 
-    public void setStartTime(Double startTime) {
-        this.startTime = startTime;
-    }
+	public Double getStartTime() {
+		return startTime;
+	}
 
-    public Double getEndTime() {
-        return endTime;
-    }
+	public ReservedSlot startTime(Double startTime) {
+		this.startTime = startTime;
+		return this;
+	}
 
-    public ReservedSlot endTime(Double endTime) {
-        this.endTime = endTime;
-        return this;
-    }
+	public void setStartTime(Double startTime) {
+		this.startTime = startTime;
+	}
 
-    public void setEndTime(Double endTime) {
-        this.endTime = endTime;
-    }
+	public Double getEndTime() {
+		return endTime;
+	}
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
+	public ReservedSlot endTime(Double endTime) {
+		this.endTime = endTime;
+		return this;
+	}
 
-    public ReservedSlot doctor(Doctor doctor) {
-        this.doctor = doctor;
-        return this;
-    }
+	public void setEndTime(Double endTime) {
+		this.endTime = endTime;
+	}
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
+	public Doctor getDoctor() {
+		return doctor;
+	}
 
-    public Set<Status> getStatuses() {
-        return statuses;
-    }
+	public ReservedSlot doctor(Doctor doctor) {
+		this.doctor = doctor;
+		return this;
+	}
 
-    public ReservedSlot statuses(Set<Status> statuses) {
-        this.statuses = statuses;
-        return this;
-    }
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
 
-    public ReservedSlot addStatus(Status status) {
-        this.statuses.add(status);
-        status.setReservedSlot(this);
-        return this;
-    }
+	public Set<Status> getStatuses() {
+		return statuses;
+	}
 
-    public ReservedSlot removeStatus(Status status) {
-        this.statuses.remove(status);
-        status.setReservedSlot(null);
-        return this;
-    }
+	public ReservedSlot statuses(Set<Status> statuses) {
+		this.statuses = statuses;
+		return this;
+	}
 
-    public void setStatuses(Set<Status> statuses) {
-        this.statuses = statuses;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+	public ReservedSlot addStatus(Status status) {
+		this.statuses.add(status);
+		status.setReservedSlot(this);
+		return this;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ReservedSlot reservedSlot = (ReservedSlot) o;
-        if (reservedSlot.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), reservedSlot.getId());
-    }
+	public ReservedSlot removeStatus(Status status) {
+		this.statuses.remove(status);
+		status.setReservedSlot(null);
+		return this;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
+	public void setStatuses(Set<Status> statuses) {
+		this.statuses = statuses;
+	}
+	// jhipster-needle-entity-add-getters-setters - JHipster will add getters
+	// and setters here, do not remove
 
-    @Override
-    public String toString() {
-        return "ReservedSlot{" +
-            "id=" + getId() +
-            ", date='" + getDate() + "'" +
-            ", startTime=" + getStartTime() +
-            ", endTime=" + getEndTime() +
-            "}";
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		ReservedSlot reservedSlot = (ReservedSlot) o;
+		if (reservedSlot.getId() == null || getId() == null) {
+			return false;
+		}
+		return Objects.equals(getId(), reservedSlot.getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(getId());
+	}
+
+	@Override
+	public String toString() {
+		return "ReservedSlot{" + "id=" + getId() + ", date='" + getDate() + "'" + ", startTime=" + getStartTime()
+				+ ", endTime=" + getEndTime() + "}";
+	}
+
+	public int compareTo(ReservedSlot reservedSlot) {
+
+		Set<Status> status1 = reservedSlot.getStatuses();
+		Set<Status> status2 = this.getStatuses();
+		int value = 0;
+		for (Status s1 : status1) {
+			for (Status s2 : status2) {
+				value = s1.getStatus().compareToIgnoreCase(s2.getStatus());
+				if (value == 0) {
+					return 0;
+				}
+			}
+		}
+		return 1;
+		
+
+		/*
+		 * Double d1 = 00.00;
+		 * 
+		 * Double d2 = 00.00; String s1 = "" + this.getStartTime().getHour() +
+		 * "." + this.getStartTime().getMinute();
+		 * 
+		 * String s2 = "" + sessionInfo.getStartTime().getHour() + "." +
+		 * sessionInfo.getStartTime().getMinute();
+		 * 
+		 * d1 = d1.parseDouble(s1); d2 = d2.parseDouble(s2);
+		 * 
+		 * return d1.compareTo(d2);
+		 */
+	}
 }

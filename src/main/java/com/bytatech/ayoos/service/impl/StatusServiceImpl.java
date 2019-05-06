@@ -109,4 +109,12 @@ public class StatusServiceImpl implements StatusService {
         return statusSearchRepository.search(queryStringQuery(query), pageable)
             .map(statusMapper::toDto);
     }
+
+	/* (non-Javadoc)
+	 * @see com.bytatech.ayoos.service.StatusService#findByDoctorId(java.lang.Long)
+	 */
+	@Override
+	public StatusDTO findByReservedSlotId(Long reservedSlotId) {
+		return statusMapper.toDto(statusRepository.findByReservedSlotId(reservedSlotId));
+	}
 }

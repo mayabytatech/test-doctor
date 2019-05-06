@@ -26,10 +26,9 @@ public class Slot {
 
 	private long id;
 	private LocalDate date;
-	private double starTime ;
-	private double toTime;
+	private Double starTime ;
+	private Double toTime;
 	private boolean bookedOrNot ;
-	
 	public long getId() {
 		return id;
 	}
@@ -42,30 +41,38 @@ public class Slot {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	public double getStarTime() {
+	public Double getStarTime() {
 		return starTime;
 	}
-	public void setStarTime(double starTime) {
+	public void setStarTime(Double starTime) {
 		this.starTime = starTime;
 	}
-	public double getToTime() {
+	public Double getToTime() {
 		return toTime;
 	}
-	public void setToTime(double toTime) {
+	public void setToTime(Double toTime) {
 		this.toTime = toTime;
 	}
-	
+	@Override
+	public String toString() {
+		return "Slot [id=" + id + ", date=" + date + ", starTime=" + starTime + ", toTime=" + toTime + ", bookedOrNot="
+				+ bookedOrNot + "]";
+	}
+	public boolean isBookedOrNot() {
+		return bookedOrNot;
+	}
+	public void setBookedOrNot(boolean bookedOrNot) {
+		this.bookedOrNot = bookedOrNot;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (bookedOrNot ? 1231 : 1237);
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		long temp;
-		temp = Double.doubleToLongBits(starTime);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(toTime);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((starTime == null) ? 0 : starTime.hashCode());
+		result = prime * result + ((toTime == null) ? 0 : toTime.hashCode());
 		return result;
 	}
 	@Override
@@ -77,6 +84,8 @@ public class Slot {
 		if (getClass() != obj.getClass())
 			return false;
 		Slot other = (Slot) obj;
+		if (bookedOrNot != other.bookedOrNot)
+			return false;
 		if (date == null) {
 			if (other.date != null)
 				return false;
@@ -84,16 +93,20 @@ public class Slot {
 			return false;
 		if (id != other.id)
 			return false;
-		if (Double.doubleToLongBits(starTime) != Double.doubleToLongBits(other.starTime))
+		if (starTime == null) {
+			if (other.starTime != null)
+				return false;
+		} else if (!starTime.equals(other.starTime))
 			return false;
-		if (Double.doubleToLongBits(toTime) != Double.doubleToLongBits(other.toTime))
+		if (toTime == null) {
+			if (other.toTime != null)
+				return false;
+		} else if (!toTime.equals(other.toTime))
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "Slot [id=" + id + ", date=" + date + ", starTime=" + starTime + ", toTime=" + toTime + "]";
-	}
+	
+	
 	
 	
 	
