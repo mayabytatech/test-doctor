@@ -232,7 +232,7 @@ public class SessionInfoResource {
 	
 	
 	
-	@GetMapping("/slots/{date}")
+	/*@GetMapping("/slots/{date}")
 	public List<Slot> createSlots(@PathVariable LocalDate date) {
 
 		List<SessionInfoDTO> sessionList = sessionInfoService.findByDate(date);
@@ -275,6 +275,6 @@ public class SessionInfoResource {
 
 		return slots;
 
-	}
+	}*/
 
 }

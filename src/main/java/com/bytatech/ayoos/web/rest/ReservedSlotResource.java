@@ -212,10 +212,10 @@ public class ReservedSlotResource {
     	}
     	return unreservedSlots;
     }
-    
+    /*
     @GetMapping("/status/{reserveredSlotId}")
     public StatusDTO getStatus(@PathVariable Long reserveredSlotId){
     	return statusService.findByReservedSlotId(reserveredSlotId);
-    }
+    }*/
 }
 
